@@ -5,20 +5,16 @@ const images = document.querySelectorAll(".carousel img");
 let currentIndex = 0;
 
 prevButton.addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateCarousel();
-  }
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  updateCarousel();
 });
 
 nextButton.addEventListener("click", () => {
-  if (currentIndex < images.length - 1) {
-    currentIndex++;
-    updateCarousel();
-  }
+  currentIndex = (currentIndex + 1) % images.length;
+  updateCarousel();
 });
 
 function updateCarousel() {
-  const offset = -currentIndex * 300; // Adjust 300 to match the image container width
+  const offset = -currentIndex * 600;
   carousel.style.transform = `translateX(${offset}px)`;
 }
